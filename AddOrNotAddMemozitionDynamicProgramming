@@ -1,0 +1,44 @@
+import java.util.Arrays;
+
+public class superseq {
+
+    public static void main(String[] args) {
+
+        String s1 = "mhunuzqrkzsnidwbun";
+        String s2 = "szulspmhwpazoxijwbq";
+
+        int max = 0;
+        if (s1.length() > s2.length()) {
+            max = s1.length();
+        } else {
+            max = s2.length();
+        }
+
+        int[][] maxtrix = new int[max + 1][max + 1];
+
+        for (int[] aa : maxtrix) {
+            Arrays.fill(aa, -1);
+        }
+
+        System.out.println(fun(s1, s2, s1.length(), s2.length(), maxtrix));
+    }
+
+    private static int fun(String s1, String s2, int length, int length2, int[][] maxtrix) {
+
+
+        if (length <= 0 || length2 <= 0) {
+            return 0;
+        }
+        if (maxtrix[length][length2] != -1) {
+            return maxtrix[length][length2];
+        }
+
+
+        if (s1.charAt(length-1) == s2.charAt(length2-1)) {
+            return maxtrix[length][length2] = 1 + fun(s1, s2, length - 1, length2 - 1, maxtrix);
+        }
+         maxtrix[length][length2]=Math.max(fun(s1, s2, length - 1, length2, maxtrix), fun(s1, s2, length, length2 - 1, maxtrix));
+        return maxtrix[length][length2];
+    }
+
+}
