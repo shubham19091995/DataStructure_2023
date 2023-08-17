@@ -23,7 +23,7 @@ public class take5 {
             for(int j=1;j<=s2.length();j++){
                 if(s1.charAt(i-1)==s2.charAt(j-1)){
                     dp[i][j]=s1.charAt(i-1)+dp[i - 1][j - 1];  // see , we are starting from i=1 and j=1 because its top down approach in tabulation so we need to check previous , right . thats why i have s1.charAt(i-1) and s2.charAt(j-1) but since at present codition we are standng on 1 so we need to fill present condition based on previous , thats what i idid 
-                }else{
+                }else{  // we are looking forward by taking things from backward thats why i used  s1.charAt(i-1) .
                     String s5=dp[i][j-1];
                     String s6=dp[i-1][j];
                     dp[i][j]=s5.length()>s6.length() ? s5 :s6;
